@@ -1,0 +1,296 @@
+:root {
+    --bg-color: #f0f2f5;
+    --header-bg: #ffffff;
+    --switch-bg: #FFA500;
+    --switch-header-bg: #1C1C1C;
+    --text-color-light: #f7fafc;
+    --text-color-dark: #2d3748;
+    --border-color: #e2e8f0;
+    --port-bg-vacant: #828282;
+    --port-bg-active: #48bb78;
+    --port-bg-damaged: #c53030;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-image: url('image_fa255d.png.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-color-dark);
+}
+
+.header {
+    background-color: var(--header-bg);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+#search-bar {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    min-width: 250px;
+}
+
+#add-switch-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.main-container {
+    padding: 2rem;
+}
+
+.switch-rack {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.switch-device {
+    background-color: var(--switch-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 10px 15px -3px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.switch-header {
+    background-color: var(--switch-header-bg);
+    color: var(--text-color-light);
+    padding: 0.75rem 1.5rem;
+    margin: -1rem -1rem 1rem -1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.switch-info {
+    flex-grow: 1;
+}
+
+.switch-name {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.switch-model {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.switch-metadata {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: #cbd5e0;
+    text-align: left;
+    gap: 2px;
+}
+
+.switch-metadata a {
+    color: #63b3ed;
+    text-decoration: none;
+}
+
+.switch-metadata a:hover {
+    text-decoration: underline;
+}
+
+.switch-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-self: center;
+}
+
+.switch-actions button {
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.switch-actions button:hover {
+    opacity: 1;
+}
+
+.switch-ports {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.port-block {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.port {
+    color: var(--text-color-light);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, outline 0.2s ease;
+    border: 2px solid rgba(0,0,0,0.2);
+    min-width: 40px;
+}
+
+.port:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.port-copper {
+    background-color: var(--port-bg-vacant);
+}
+
+.port-sfp {
+    background-color: var(--port-bg-vacant);
+    border: 2px dashed #a0aec0;
+}
+
+.port.status-active {
+    background-color: var(--port-bg-active);
+}
+
+.port.status-damaged {
+    background-color: var(--port-bg-damaged);
+    text-decoration: line-through;
+}
+
+.port.highlight {
+    outline: 4px solid #f6e05e;
+    outline-offset: 2px;
+    box-shadow: 0 0 15px #f6e05e;
+    transform: scale(1.05) translateY(-2px);
+}
+
+/* Estilos do Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.form-buttons button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#clear-data-btn {
+    background-color: #718096;
+    margin-right: auto; 
+}
+
+#mark-damaged-btn {
+    background-color: #c53030;
+    color: white;
+}
+
+#save-data-btn, #create-switch-btn, #save-switch-btn {
+    background-color: #3182ce;
+    color: white;
+}

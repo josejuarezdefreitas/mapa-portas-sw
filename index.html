@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Portas de Switch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>🗺️ IFPR - União da Vitória - Mapa de Portas de Switch </h1>
+        <div class="actions">
+            <input type="search" id="search-bar" placeholder="Buscar por IP, MAC, dispositivo...">
+            <button id="add-switch-btn">Adicionar Novo Switch</button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="switch-rack">
+            </div>
+    </main>
+
+    <div id="port-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2 id="modal-title">Editar Porta X</h2>
+            <form id="port-form">
+                <div class="form-group">
+                    <label for="device-name">Nome do Dispositivo:</label>
+                    <input type="text" id="device-name" name="deviceName" placeholder="Ex: PC-CONTABIL-01">
+                </div>
+                <div class="form-group">
+                    <label for="device-type">Tipo de Dispositivo:</label>
+                    <select id="device-type" name="deviceType">
+                        <option value="vazio">-- Vazio --</option>
+                        <option value="computador">Computador</option>
+                        <option value="impressora">Impressora</option>
+                        <option value="servidor">Servidor</option>
+                        <option value="access-point">Access Point</option>
+                        <option value="roteador">Roteador</option>
+                        <option value="telefone-ip">Telefone IP</option>
+                        <option value="camera">Câmera</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vlan-id">VLAN ID:</label>
+                    <input type="number" id="vlan-id" name="vlanId" placeholder="Ex: 10">
+                </div>
+                <div class="form-group">
+                    <label for="mac-address">Endereço MAC:</label>
+                    <input type="text" id="mac-address" name="macAddress" placeholder="00:1B:44:11:3A:B7">
+                </div>
+                <div class="form-group">
+                    <label for="ip-address">Endereço IP:</label>
+                    <input type="text" id="ip-address" name="ipAddress" placeholder="192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notas Adicionais:</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Ponto de rede na mesa ao lado da janela..."></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" id="mark-damaged-btn">Marcar Danificada</button>
+                    <button type="button" id="clear-data-btn">Limpar Dados</button>
+                    <button type="submit" id="save-data-btn">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="add-switch-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>Adicionar Novo Switch</h2>
+            <form id="add-switch-form">
+                <div class="form-group">
+                    <label for="switch-template">Escolha o Modelo:</label>
+                    <select id="switch-template" name="templateKey" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="switch-custom-name">Nome Personalizado:</label>
+                    <input type="text" id="switch-custom-name" name="customName" placeholder="Ex: Switch Principal do Datacenter" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" id="create-switch-btn">Criar Switch</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-switch-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>Editar Dados do Switch</h2>
+            <form id="edit-switch-form">
+                <div class="form-group">
+                    <label for="edit-switch-name">Nome Personalizado:</label>
+                    <input type="text" id="edit-switch-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-switch-location">Localização:</label>
+                    <input type="text" id="edit-switch-location" name="location" placeholder="Ex: Datacenter, Rack 02, Posição 5U">
+                </div>
+                <div class="form-group">
+                    <label for="edit-switch-ip">Endereço IP de Gerenciamento:</label>
+                    <input type="text" id="edit-switch-ip" name="ip" placeholder="Ex: 192.168.0.2">
+                </div>
+                <div class="form-group">
+                    <label for="edit-switch-mac">Endereço MAC:</label>
+                    <input type="text" id="edit-switch-mac" name="mac" placeholder="Ex: 00:1A:2B:3C:4D:5E">
+                </div>
+                <div class="form-group">
+                    <label for="edit-switch-url">Link de Acesso (URL):</label>
+                    <input type="text" id="edit-switch-url" name="url" placeholder="Ex: https://192.168.0.2">
+                </div>
+                <div class="form-group">
+                    <label for="edit-switch-assetId">Nº de Patrimônio:</label>
+                    <input type="text" id="edit-switch-assetId" name="assetId" placeholder="Ex: #123456">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" id="save-switch-btn">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+	<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database-compat.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
